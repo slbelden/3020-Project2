@@ -16,15 +16,30 @@ using std::endl;
 // Global Function Declarations
 vector<Point> generateRandomPoints(int number);
 
+// Global Variables
+double range = 1000; // Points will have a max x and y of +- this value
+double precission = 0.000001; // Accepted error in double calculations
+
 int main() {
 	// Temporary Point class testing
 	Point A = Point(1.1, 2.2);
 	Point B = Point();
 	cout << "Point A: " << A << endl;
 	cout << "Point B: " << B << endl;
+	cout << endl;
 
-	vector<Point> pointListA = generateRandomPoints(1000);
+	int number = 0;
+	cout << "Number of points to randomly generate: ";
+	cin >> number;
+
+	vector<Point> pointListA = generateRandomPoints(number);
 	cout << "There are " << pointListA.size() << " points in list A." << endl;
+	cout << endl;
+
+	// BS statement
+	cout << "Generic Output:" << endl
+		<< "There may or may not be 0 groups of 4 or more collinear points in this list." << endl;
+	cout << endl;
 }
 
 // Gobal Function Deffinions
@@ -32,7 +47,7 @@ vector<Point> generateRandomPoints(int number) {
 	vector<Point> list = vector<Point>();
 	randomizeSeed();
 	for (int i = 0; i < number; i++) {
-		list.push_back(Point(randUniform() * 1000, randUniform() * 1000));
+		list.push_back(Point(randReal(-1 * range, range), randReal(-1 * range, range)));
 	}
 	return list;
 }
