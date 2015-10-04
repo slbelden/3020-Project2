@@ -1,0 +1,36 @@
+// THIS IS PSEUDO-CODE!
+// This might be on the track of what we need to do...
+// Edge object stores 2 points and a slope.
+// edges is a list (of some sort) of Edges.
+// Line object stores 2 edges.
+// lines is a list (of some sort) of Lines.
+
+for (point1 to pointN, iterator it1)
+{
+	for (point1 to pointN, iterator it2)
+	{
+		if (it1 != it2)
+		{
+			slope = findSlope(it1,it2)
+			Edge this(it1,it2,slope)
+			edges.add(this)
+		}
+	}
+}
+
+sortBySlope(edges)
+
+for (edge1 to edgeN, iterator it)
+{
+	if (it.slope = (it+1).slope)
+	{
+		Line this(it,(it=1))
+		lines.add(this)
+	}
+	else
+	{
+		start a new lines
+	}
+}
+
+return allTheLines!!!
