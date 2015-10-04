@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{1D51AC9C-4032-42E0-969E-8411D49857B3}</ProjectGuid>
+    <ProjectGuid>{67A03FBA-C410-4F89-A067-64A5B986DD15}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>FindColliniarPoints</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -142,13 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\CollinearPoints\CollinearPoints\Line.cpp" />
-    <ClCompile Include="..\..\CollinearPoints\CollinearPoints\Main.cpp" />
-    <ClCompile Include="..\..\CollinearPoints\CollinearPoints\Point.cpp" />
+    <ClCompile Include="Line.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Point.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\CollinearPoints\CollinearPoints\Line.h" />
-    <ClInclude Include="..\..\CollinearPoints\CollinearPoints\Point.h" />
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="Point.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

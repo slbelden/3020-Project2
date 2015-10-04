@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\CollinearPoints\CollinearPoints\Main.cpp">
+    <ClCompile Include="Line.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CollinearPoints\CollinearPoints\Line.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\CollinearPoints\CollinearPoints\Point.cpp">
+    <ClCompile Include="Point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\CollinearPoints\CollinearPoints\Line.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Line.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\CollinearPoints\CollinearPoints\Point.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Point.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
