@@ -21,13 +21,7 @@ double range = 1000; // Points will have a max x and y of +- this value
 double precission = 0.000001; // Accepted error in double calculations
 
 int main() {
-	// Temporary Point class testing
-	Point A = Point(1.1, 2.2);
-	Point B = Point();
-	cout << "Point A: " << A << endl;
-	cout << "Point B: " << B << endl;
-	cout << endl;
-
+	// Temporary IO code
 	int number = 0;
 	cout << "Number of points to randomly generate: ";
 	cin >> number;
