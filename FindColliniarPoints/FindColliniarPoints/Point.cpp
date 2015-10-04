@@ -12,7 +12,6 @@ using std::ostream;
 using std::cout;
 using std::endl;
 
-// Somewhat arbitrary, but it works.
 Point::Point() {
 	_X = 0.0;
 	_Y = 0.0;
