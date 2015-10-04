@@ -1,13 +1,12 @@
-#pragma once
-
 // Point.cpp
+// A random point class. May be handy.
 // Chris Ruiz - CR
 
 // 2015-Oct-4
-// A random point class. May be handy.
+
+#pragma once
 
 #include "Point.h"
-
 #include <iostream>
 using std::ostream;
 using std::cout;
@@ -15,16 +14,14 @@ using std::endl;
 
 // Somewhat arbitrary, but it works.
 Point::Point() {
-	_X = 0;
-	_Y = 0;
+	_X = 0.0;
+	_Y = 0.0;
 }
 
 Point::Point(double X, double Y) {
 	_X = X;
 	_Y = Y;
 }
-
-Point::~Point() { }
 
 void Point::setX(double X) {
 	_X = X;
@@ -46,4 +43,3 @@ ostream& operator<< (ostream& os, const Point& p) {
 	os << "(" << p.getX() << ", " << p.getY() << ")";
 	return os;
 }
-
