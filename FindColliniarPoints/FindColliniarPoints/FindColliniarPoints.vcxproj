@@ -142,7 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\CollinearPoints\CollinearPoints\Line.cpp" />
     <ClCompile Include="..\..\CollinearPoints\CollinearPoints\Main.cpp" />
+    <ClCompile Include="..\..\CollinearPoints\CollinearPoints\Point.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\CollinearPoints\CollinearPoints\Line.h" />
+    <ClInclude Include="..\..\CollinearPoints\CollinearPoints\Point.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
