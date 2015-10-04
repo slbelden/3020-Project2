@@ -42,3 +42,8 @@ double Point::getY() const {
 	return _Y;
 }
 
+ostream& operator<< (ostream& os, const Point& p) {
+	os << "(" << p.getX() << ", " << p.getY() << ")";
+	return os;
+}
+

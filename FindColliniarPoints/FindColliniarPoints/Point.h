@@ -6,6 +6,8 @@
 // 2015-Oct-4
 // A random point class. May be handy.
 
+#include <iostream>
+
 class Point {
 public:
 	Point();

@@ -4,6 +4,8 @@
 // Chris Ruiz - CR
 
 #include "Line.h"
+#include "Point.h"
+#include <limits>
 
 #include <iostream>
 using std::ostream;
@@ -16,7 +18,7 @@ Line::Line(Point first, Point second) {
 		slope = (second.getY() - first.getY()) / (second.getX() - first.getX());
 	}
 	else {
-		slope = DBL_MAX;
+		slope = std::numeric_limits<double>::infinity();
 	}
 
 	collection.insert(first);
@@ -29,3 +31,8 @@ double Line::getSlope() {
 	return slope;
 }
 
+ostream& operator<< (ostream& os, Line& l) {
+	for (set<Point>::iterator it = l.collection.begin(); it != l.collection.end(); it++) {
+		os << *it << " ";
+	}
+}
