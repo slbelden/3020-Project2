@@ -32,9 +32,9 @@ int main() {
 
 	// BS output
 	cout << "Generic Output:" << endl
-		<< "There may or may not be 0 groups of 4 or more collinear points in this list." << endl;
+		<< "There may or may not be N groups of 4 or more collinear points in this list." << endl;
 	cout << endl;
-	cout << "Some points: " << endl;
+	cout << "Some points from the list: " << endl;
 	int i = 0;
 	char letter = 'A';
 	while(letter < 'Z' && i < pointListA.size()) {
