@@ -36,10 +36,18 @@ int main() {
 	cout << "There are " << pointListA.size() << " points in list A." << endl;
 	cout << endl;
 
-	// BS statement
+	// BS output
 	cout << "Generic Output:" << endl
 		<< "There may or may not be 0 groups of 4 or more collinear points in this list." << endl;
 	cout << endl;
+	cout << "Some points: " << endl;
+	int i = 0;
+	char letter = 'A';
+	while(letter < 'Z' && i < pointListA.size()) {
+		cout << "Point " << letter << ": " << pointListA[i] << endl;
+		letter++;
+		i++;
+	}
 }
 
 // Gobal Function Deffinions
