@@ -1,24 +1,28 @@
+// Line.h
+// Line class with 2 edges
+// Meghan Haukaas
+// 2015-Oct-11
+
 #pragma once
 
-// Line.h
-// Chris Ruiz - CR
-
-// 2015-Oct-4
-// May be handy as well. Depends on our implementation.
-
-#include "Point.h"
-#include <set>
-using std::set;
-
+#include <iostream>
+#include "Edge.h"
+using std::ostream;
 
 class Line {
 public:
-	Line(Point first, Point second); 
-	~Line();
-	double getSlope();
-	friend ostream& operator<< (ostream& os, Line& l);
+	Line();
+	Line(Edge one, Edge two);
+	void set1(Edge one);
+	void set2(Edge two);
+	Edge get1() const;
+	Edge get2() const;
+	bool equalSlopes();
 
 private:
-	set<Point> collection; // Contains the known points in the line.
-	double slope; // Carries the slope of the line. DBL_MAX indicates a slope of infinity.
-}; 
+	Edge _one;
+	Edge _two;
+};
+
+ostream& operator<< (ostream& os, const Line& l);
+

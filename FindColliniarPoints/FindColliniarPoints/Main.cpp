@@ -11,7 +11,7 @@
 #include "Point.h"
 #include "RandomUtilities.h"
 #include "Edge.h"
-#include "Line2.h"
+#include "Line.h"
 using std::vector;
 using std::cout;
 using std::cin;
@@ -45,6 +45,11 @@ int main() {
 		pointListA.push_back(Point(x, y));
 	}
 
+	// Random Tests
+	Edge edgeA = Edge(pointListA[0], pointListA[1]);
+	Edge edgeB = Edge(pointListA[2], pointListA[3]);
+	Line lineA = Line(edgeA, edgeB);
+
 	// BS output
 	cout << endl << "Generic Output:" << endl
 		<< "There may or may not be N groups of 4 or more collinear points in this list." << endl;
@@ -57,6 +62,12 @@ int main() {
 		letter++;
 		i++;
 	}
+
+	// Random Tests Cont.
+	cout << endl;
+	cout << "EdgeA prints as: " << edgeA << endl;
+	cout << "EdgeB prints as: " << edgeB << endl;
+	cout << "LineA prints as: " << lineA << endl;
 }
 
 // Gobal Function Deffinions

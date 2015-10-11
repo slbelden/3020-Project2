@@ -1,38 +1,50 @@
+// Line.cpp
+// Line class that holds 2 edges
+// Meghan Haukaas
+// 2015-Oct-11
+
 #pragma once
 
-// Line.cpp
-// Chris Ruiz - CR
-
 #include "Line.h"
-#include "Point.h"
-#include <limits>
-
 #include <iostream>
 using std::ostream;
 using std::cout;
+using std::endl;
 
-// CR - Will we ever really have a "blank" line? Meh.
-
-Line::Line(Point first, Point second) {
-	if (second.getX() - first.getX() != 0) {
-		slope = (second.getY() - first.getY()) / (second.getX() - first.getX());
-	}
-	else {
-		slope = std::numeric_limits<double>::infinity();
-	}
-
-	collection.insert(first);
-	collection.insert(second);
+Line::Line() {
+	_one = Edge();
+	_two = Edge();
 }
 
-Line::~Line() { }
-
-double Line::getSlope() {
-	return slope;
+Line::Line(Edge one, Edge two) {
+	_one = one;
+	_two = two;
 }
 
-ostream& operator<< (ostream& os, Line& l) {
-	for (set<Point>::iterator it = l.collection.begin(); it != l.collection.end(); it++) {
-		os << *it << " ";
+void Line::set1(Edge one) {
+	_one = one;
+}
+
+void Line::set2(Edge two) {
+	_two = two;
+}
+
+Edge Line::get1() const {
+	return _one;
+}
+
+Edge Line::get2() const {
+	return _two;
+}
+
+bool Line::equalSlopes() {
+	if (_one.getSlope() == _two.getSlope()) {
+		return true;
 	}
+	return false;
+}
+
+ostream& operator<< (ostream& os, const Line& l) {
+	os << l.get1() << ", " << l.get2() << endl;
+	return os;
 }
