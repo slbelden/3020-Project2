@@ -11,8 +11,9 @@ for (point1 to pointN, iterator it1)
 	{
 		if (it1 != it2)
 		{
-			slope = findSlope(it1,it2)
-			Edge this(it1,it2,slope)
+			*slope = findSlope(it1,it2)*
+				*Edge class now does this automatically
+			Edge this(it1,it2,*slope*)
 			edges.add(this)
 		}
 	}
@@ -22,9 +23,9 @@ sortBySlope(edges)
 
 for (edge1 to edgeN, iterator it)
 {
-	if (it.slope = (it+1).slope)
+Line this(it,(it+1))
+	if (this.equalSlopes(it,(it+1)))
 	{
-		Line this(it,(it=1))
 		lines.add(this)
 	}
 	else
