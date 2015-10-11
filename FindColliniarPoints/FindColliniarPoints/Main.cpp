@@ -10,6 +10,8 @@
 #include <string>
 #include "Point.h"
 #include "RandomUtilities.h"
+#include "Edge.h"
+#include "Line2.h"
 using std::vector;
 using std::cout;
 using std::cin;
