@@ -39,7 +39,7 @@ void Edge::setSlope(Point one, Point two) {
 	double slope;
 	x = (two.getX() - one.getX());
 	y = (two.getY() - one.getY());
-	if (x = 0) {
+	if (x == 0) {
 		slope = std::numeric_limits<double>::infinity();
 	}
 	else {
