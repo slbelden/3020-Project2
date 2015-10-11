@@ -2,36 +2,49 @@
 // Meghan Haugaas - MH
 // Chris Ruiz - CR
 
-// 2015-Oct-04
+// 2015-Oct-11
 
 #include <iostream>
+#include <fstream>
 #include <vector>
+#include <string>
 #include "Point.h"
 #include "RandomUtilities.h"
 using std::vector;
 using std::cout;
 using std::cin;
 using std::endl;
+using std::string;
+using std::ifstream;
 
 // Global Function Declarations
 vector<Point> generateRandomPoints(int number);
 
 // Global Variables
 double range = 1000; // Points will have a max x and y of +- this value
-double precission = 0.000001; // Accepted error in double calculations
+double precission = 0.000001; // Acceptable error in double calculations
 
 int main() {
-	// Temporary IO code
-	int number = 0;
-	cout << "Number of points to randomly generate: ";
-	cin >> number;
+	// Open a file of points
+	ifstream infile;
+	do {
+		string filename;
+		cout << "Enter name of a point file: ";
+		cin >> filename;
+		infile.open(filename.c_str());
+		if(!infile) cout << "Failed to open point file." << endl << endl;
+	} while(!infile);
 
-	vector<Point> pointListA = generateRandomPoints(number);
-	cout << "There are " << pointListA.size() << " points in list A." << endl;
-	cout << endl;
+	// Read points from the file
+	vector<Point> pointListA;
+	while(!infile.eof()) {
+		double x, y;
+		infile >> x >> y;
+		pointListA.push_back(Point(x, y));
+	}
 
 	// BS output
-	cout << "Generic Output:" << endl
+	cout << endl << "Generic Output:" << endl
 		<< "There may or may not be N groups of 4 or more collinear points in this list." << endl;
 	cout << endl;
 	cout << "Some points from the list: " << endl;
