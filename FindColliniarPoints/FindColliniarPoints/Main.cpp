@@ -42,17 +42,27 @@ int main() {
 	// Read points from the file
 	vector<Point> pointListA;
 	while(!infile.eof()) {
-		double x, y;
+		double x = 0, y = 0;
 		infile >> x >> y;
 		pointListA.push_back(Point(x, y));
 	}
 
+	// Point testing
+	int a = 1;
+	for each (Point p in pointListA) {
+		cout << "Point " << a << " is " << p << endl;
+		a++;
+	}
+
 	// Create all edges
 	vector<Edge> edgeListA;
+	vector <Point> tempPoints;
+	tempPoints = pointListA;
 	for each(Point a in pointListA) {
-		for each(Point b in pointListA) {
+		for each(Point b in tempPoints) {
 			if (a != b) edgeListA.push_back(Edge(a, b));
 		}
+		tempPoints.erase(tempPoints.begin());
 	}
 
 	// Sort by slope
@@ -63,11 +73,9 @@ int main() {
 		<< "There may or may not be N groups of 4 or more collinear points in this list." << endl;
 	cout << endl;
 	cout << "Some points from the list: " << endl;
-	int i = 0;
-	char letter = 'A';
-	while(letter < 'Z' && i < pointListA.size()) {
-		cout << "Point " << letter << ": " << pointListA[i] << endl;
-		letter++;
+	int i = 1;
+	for each (Edge e in edgeListA) {
+		cout << "Edge " << i << " is " << e << endl;
 		i++;
 	}
 }
