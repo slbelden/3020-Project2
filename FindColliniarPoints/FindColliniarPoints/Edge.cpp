@@ -21,7 +21,7 @@ Edge::Edge() {
 Edge::Edge(Point one, Point two) {
 	_one = one;
 	_two = two;
-	setSlope(one, two);
+	setSlope();
 	_slope = getSlope();
 }
 
@@ -33,12 +33,13 @@ void Edge::set2(Point two) {
 	_two = two;
 }
 
-void Edge::setSlope(Point one, Point two) {
+
+void Edge::setSlope() {
 	double x;
 	double y;
 	double slope;
-	x = (two.getX() - one.getX());
-	y = (two.getY() - one.getY());
+	x = (_two.getX() - _one.getX());
+	y = (_two.getY() - _one.getY());
 	if (x == 0) {
 		slope = std::numeric_limits<double>::infinity();
 	}

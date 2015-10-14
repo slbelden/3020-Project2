@@ -47,14 +47,8 @@ int main() {
 		pointListA.push_back(Point(x, y));
 	}
 
-	// Point testing
-	int a = 1;
-	for each (Point p in pointListA) {
-		cout << "Point " << a << " is " << p << endl;
-		a++;
-	}
-
 	// Create all edges
+	// O(N^2)
 	vector<Edge> edgeListA;
 	vector <Point> tempPoints;
 	tempPoints = pointListA;
@@ -66,9 +60,10 @@ int main() {
 	}
 
 	// Sort by slope
+	// O(N log N)
 	sort(edgeListA.begin(), edgeListA.end());
 
-	// BS output
+	// Testing Output
 	cout << endl << "Generic Output:" << endl
 		<< "There may or may not be N groups of 4 or more collinear points in this list." << endl;
 	cout << endl;

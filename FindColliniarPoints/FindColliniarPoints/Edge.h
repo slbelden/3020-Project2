@@ -15,7 +15,7 @@ public:
 	Edge(Point one, Point two);
 	void set1(Point one);
 	void set2(Point two);
-	void setSlope(Point one, Point two);
+	void setSlope();
 	Point get1() const;
 	Point get2() const;
 	double getSlope() const;
