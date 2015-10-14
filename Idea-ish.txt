@@ -11,9 +11,7 @@ for (point1 to pointN, iterator it1)
 	{
 		if (it1 != it2)
 		{
-			*slope = findSlope(it1,it2)*
-				*Edge class now does this automatically
-			Edge this(it1,it2,*slope*)
+			Edge this(it1,it2)
 			edges.add(this)
 		}
 	}
