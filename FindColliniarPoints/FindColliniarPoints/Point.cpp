@@ -38,6 +38,14 @@ double Point::getY() const {
 	return _Y;
 }
 
+bool operator== (const Point & lhs, const Point & rhs) {
+	return (lhs.getX() == rhs.getX()) && (lhs.getY() == rhs.getY());
+}
+
+bool operator!= (const Point & lhs, const Point & rhs) {
+	return !operator==(lhs, rhs);
+}
+
 ostream& operator<< (ostream& os, const Point& p) {
 	os << "(" << p.getX() << ", " << p.getY() << ")";
 	return os;

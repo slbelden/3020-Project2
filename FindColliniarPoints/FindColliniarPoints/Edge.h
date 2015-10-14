@@ -27,3 +27,4 @@ private:
 };
 
 ostream& operator<< (ostream& os, const Edge& e);
+bool operator< (const Edge & lhs, const Edge & rhs);

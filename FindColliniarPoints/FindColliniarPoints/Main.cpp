@@ -8,6 +8,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include "Point.h"
 #include "RandomUtilities.h"
 #include "Edge.h"
@@ -16,6 +17,7 @@ using std::vector;
 using std::cout;
 using std::cin;
 using std::endl;
+using std::sort;
 using std::string;
 using std::ifstream;
 
@@ -45,10 +47,16 @@ int main() {
 		pointListA.push_back(Point(x, y));
 	}
 
-	// Random Tests
-	Edge edgeA = Edge(pointListA[0], pointListA[1]);
-	Edge edgeB = Edge(pointListA[2], pointListA[3]);
-	Line lineA = Line(edgeA, edgeB);
+	// Create all edges
+	vector<Edge> edgeListA;
+	for each(Point a in pointListA) {
+		for each(Point b in pointListA) {
+			if (a != b) edgeListA.push_back(Edge(a, b));
+		}
+	}
+
+	// Sort by slope
+	sort(edgeListA.begin(), edgeListA.end());
 
 	// BS output
 	cout << endl << "Generic Output:" << endl
@@ -62,12 +70,6 @@ int main() {
 		letter++;
 		i++;
 	}
-
-	// Random Tests Cont.
-	cout << endl;
-	cout << "EdgeA prints as: " << edgeA << endl;
-	cout << "EdgeB prints as: " << edgeB << endl;
-	cout << "LineA prints as: " << lineA << endl;
 }
 
 // Gobal Function Deffinions

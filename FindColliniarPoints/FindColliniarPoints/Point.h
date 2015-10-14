@@ -24,3 +24,5 @@ private:
 };
 
 ostream& operator<< (ostream& os, const Point& p);
+bool operator== (const Point & lhs, const Point & rhs);
+bool operator!= (const Point & lhs, const Point & rhs);

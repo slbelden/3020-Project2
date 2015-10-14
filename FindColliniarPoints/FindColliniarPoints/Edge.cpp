@@ -60,6 +60,10 @@ double Edge::getSlope() const {
 	return _slope;
 }
 
+bool operator< (const Edge & lhs, const Edge & rhs){
+	return lhs.getSlope() < rhs.getSlope();
+}
+
 ostream& operator<< (ostream& os, const Edge& e) {
 	os << "(" << e.get1() << ", " << e.get2() << ")" << " Slope: " 
 		<< e.getSlope();
