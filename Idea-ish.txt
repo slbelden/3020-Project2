@@ -22,13 +22,13 @@ sortBySlope(edges)
 for (edge1 to edgeN, iterator it)
 {
 Line this(it,(it+1))
-	if (this.equalSlopes(it,(it+1)))
+	if (this.equalSlopes(it,(it+1)) && this.equalOffset(it,(it+1)))
 	{
-		lines.add(this)
+			lines.add(this)
 	}
 	else
 	{
-		start a new lines
+		start a new lines //HOW???
 	}
 }
 

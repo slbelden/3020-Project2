@@ -44,6 +44,13 @@ bool Line::equalSlopes() {
 	return false;
 }
 
+bool Line::equalOffset() {
+	if (_one.getIntercept() == _two.getIntercept()) {
+		return true;
+	}
+	return false;
+}
+
 ostream& operator<< (ostream& os, const Line& l) {
 	os << l.get1() << ", " << l.get2() << endl;
 	return os;

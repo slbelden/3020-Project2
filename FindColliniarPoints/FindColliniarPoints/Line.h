@@ -18,6 +18,7 @@ public:
 	Edge get1() const;
 	Edge get2() const;
 	bool equalSlopes();
+	bool equalOffset();
 
 private:
 	Edge _one;
