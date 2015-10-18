@@ -37,17 +37,28 @@ return allTheLines!!!
 <vector> Edge sortedList
 new <vector> Edge edgeList
 new <vector> vector answerList
+int i(1);
 
-for (sortedList[0] to sortedList[n], iterator it)
+while (i == 1)
 {
-	if (it == it+1)
+	if (sortedlist[0] == sortedList[1])
 	{
-		edgeList.add(it)
+		sortedList.insert(sortedList[0])
+		edgelist.erase(sortedList[0])
+		if(sortedList.size() == 1)
+		{
+			sortedList.insert(sortedList[0])
+			edgelist.erase(sortedList[0])
+		}
 		keep going
 	}
 	else
 	{
-		edgeList.add(it)
+		edgeList.insert(sortedList[0])
+		if(sortedList.size() == 1)
+		{
+			sortedlist.erase(sortedList[0])
+		}
 		if (edgeList.size >= 4)
 		{
 			answerList.insert(edgeList)
@@ -55,4 +66,9 @@ for (sortedList[0] to sortedList[n], iterator it)
 		clear edgeList
 		keep going
 	}
+	if (sortedList.size == 0)
+	{
+		i = 0;
+	}
 }
+
