@@ -24,6 +24,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::sort;
+using std::random_shuffle;
 using std::abs;
 using std::string;
 using std::getline;
@@ -65,28 +66,30 @@ int main() {
 		int colPoints = (int)((double)totalPoints * collinearRatio);
 		int randomPoints = totalPoints - colPoints;
         for(int i = 0; i < randomPoints; i++) {
-			double x = randReal(range * -1, range);
-			double y = randReal(range * -1, range);
+			double x = randReal(-range, range);
+			double y = randReal(-range, range);
 			pointList.push_back(Point(x, y));
 			cout << "Generated random point " << pointList.back() << endl;
 		}
 		for(int i = 0; i < colPoints;) {
 			double m = randReal(-50.0, 50.0);
-			double b = randReal(range * -1, range);
+			double b = randReal(-range, range);
 			int pointsThisLine = randInt(pointsPerLine - (pointsPerLine / 2),
 				pointsPerLine + (pointsPerLine / 2));
 			int j = 0;
 			while(j < pointsThisLine && i < colPoints) {
-				double x = randReal(range * -1, range);
-				double y;
+				double x, y;
 				do {
+					x = randReal(-range, range);
 					y = (m * x) + b;
-				} while(abs(y) <= 1000);
+				} while((abs(y)) >= range);
+				pointList.push_back(Point(x, y));
 				cout << "Generated collinear point " << pointList.back() << endl;
 				j++;
 				i++;
 			}
 		}
+		random_shuffle(pointList.begin(), pointList.end());
 	}
 
 	else {
@@ -119,11 +122,9 @@ int main() {
 	cout << endl << "Generic Output:" << endl
 		<< "There may or may not be N groups of 4 or more collinear points in this list." << endl;
 	cout << endl;
-	cout << "Some points from the list: " << endl;
-	int i = 1;
-	for each (Edge e in edgeList) {
-		cout << "Edge " << i << " is " << e << endl;
-		i++;
+	cout << "Some edges from the list: " << endl;
+	for(int i = 0; i < 20; i++) {
+		cout << "Edge " << i << " is " << edgeList[i] << endl;
 	}
 
 	// Find collinear points
