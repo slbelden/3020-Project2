@@ -129,27 +129,27 @@ int main() {
 
 	// Find collinear points
 	// 
-	vector<Edge> edgeListB;
+	vector<Edge> matchedEdges;
 	vector<vector<Point>> answerList;
 	while (!edgeList.empty()) {
 		if (edgeList[0] == edgeList[1]) {
-			edgeListB.push_back(edgeList[0]);
+			matchedEdges.push_back(edgeList[0]);
 			edgeList.erase(edgeList.begin());
 			if (edgeList.size() == 1) {
-				edgeListB.push_back(edgeList[0]);
+				matchedEdges.push_back(edgeList[0]);
 				edgeList.erase(edgeList.begin());
-				answerList.push_back(edgesToPoints(edgeListB));
+				answerList.push_back(edgesToPoints(matchedEdges));
 			}
 		}
 		else {
-			edgeListB.push_back(edgeList[0]);
+			matchedEdges.push_back(edgeList[0]);
 			if (edgeList.size() == 1) {
 				edgeList.erase(edgeList.begin());
 			}
-			if (edgeListB.size() >= 4) {
-				answerList.push_back(edgesToPoints(edgeListB));
+			if (matchedEdges.size() >= 4) {
+				answerList.push_back(edgesToPoints(matchedEdges));
 			}
-			edgeListB.clear();
+			matchedEdges.clear();
 		}
 	}
 
