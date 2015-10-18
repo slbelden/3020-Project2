@@ -12,7 +12,6 @@
 #include "Point.h"
 #include "RandomUtilities.h"
 #include "Edge.h"
-#include "Line.h"
 using std::vector;
 using std::cout;
 using std::cin;
@@ -26,16 +25,14 @@ using std::ifstream;
 vector<Point> generateRandomPoints(int number);
 
 // Global Variables
-double range = 1000; // Points will have a max x and y of +- this value
-double precission = 0.000001; // Acceptable error in double calculations
+double range = 1000.0; // Points will have a max x and y of +- this value 
 bool fileMode = true; // Used to control program flow
-
 
 int main() {
 	// Open a file of points
 	ifstream infile;
 	string filename;
-	cout << "Enter name of a point file: ";
+	cout << "Enter name of a point file (press enter to skip): ";
 	getline(cin, filename);
 	infile.open(filename.c_str());
 	if(!infile) {
@@ -51,9 +48,9 @@ int main() {
 		int numPoints;
 		double collinearRatio;
 		int numCollinear;
-		cout << "Total points to generate (non-negative integer): ";
+		cout << "Total number of points to generate (positive integer): ";
 		cin >> numPoints;
-		cout << "Ratio of points that are collinear (double from 0.0 to 1.0): ";
+		cout << "Ratio of points that will be collinear (double from 0.0 to 1.0): ";
 		cin >> collinearRatio;
 		cout << "Number collinear of points on each unique line (int 2 or larger): ";
 		cin >> numCollinear;

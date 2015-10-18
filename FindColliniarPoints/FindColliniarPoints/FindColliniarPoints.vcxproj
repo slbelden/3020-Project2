@@ -143,13 +143,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Edge.cpp" />
-    <ClCompile Include="Line.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Point.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Edge.h" />
-    <ClInclude Include="Line.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="RandomUtilities.h" />
   </ItemGroup>
