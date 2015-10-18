@@ -27,7 +27,7 @@ using std::ifstream;
 vector<Point> generateRandomPoints(int number);
 
 // edges to points
-vector<vector<Point>> edgesToPoints(vector<Edge> edgeList);
+vector<Point> edgesToPoints(vector<Edge> edgeList);
 
 // Global Variables
 double range = 1000.0; // Points will have a max x and y of +- this value 
@@ -140,7 +140,7 @@ int main() {
 			if (edgeList.size() == 1) {
 				edgeListB.push_back(edgeList[0]);
 				edgeList.erase(edgeList.begin());
-				answerList = edgesToPoints(edgeListB);
+				answerList.push_back(edgesToPoints(edgeListB));
 			}
 		}
 		else {
@@ -149,12 +149,20 @@ int main() {
 				edgeList.erase(edgeList.begin());
 			}
 			if (edgeListB.size() >= 4) {
-				answerList = edgesToPoints(edgeListB);
+				answerList.push_back(edgesToPoints(edgeListB));
 			}
 			edgeListB.clear();
 		}
-		if (edgeList.size() == 0) {
+		if (edgeList.empty()) {
 			temp = 0;
+		}
+	}
+
+	// Print the lines with colinear points
+	for each (vector<Point> v in answerList) {
+		cout << "This line contains the points ";
+		for each (Point p in v) {
+			cout << p << ", ";
 		}
 	}
 
@@ -170,12 +178,30 @@ vector<Point> generateRandomPoints(int number) {
 	return list;
 }
 
-
-// incomplete!
-vector<vector<Point>> edgesToPoints(vector<Edge> edgeList) {
-	vector<vector<Point>> answers;
+// Take a vector of Edges and make it into a vector
+// of non-repeating Points
+vector<Point> edgesToPoints(vector<Edge> edgeList) {
+	vector<Point> answers;
 	for each (Edge e in edgeList) {
-
+		bool oneInList(false);
+		bool twoInList(false);
+		if (answers.empty()) {
+			answers.push_back(e.get1());
+		}
+		for each (Point p in answers) {
+			if (p == e.get1()) {
+				oneInList = true;
+			}
+			if (p == e.get2()) {
+				twoInList = true;
+			}
+		}
+		if (!oneInList) {
+			answers.push_back(e.get1());
+		}
+		if (!twoInList) {
+			answers.push_back(e.get2());
+		}
 	}
 	return answers;
 }
