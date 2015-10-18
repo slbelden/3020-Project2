@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <math.h>
 #include "Point.h"
 #include "RandomUtilities.h"
 #include "Edge.h"
@@ -17,6 +18,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::sort;
+using std::abs;
 using std::string;
 using std::getline;
 using std::ifstream;
@@ -55,15 +57,39 @@ int main() {
 		cin >> totalPoints;
 		cout << "Ratio of points that will be collinear (double from 0.0 to 1.0): ";
 		cin >> collinearRatio;
-		cout << "Number collinear of points on each unique line (int 2 or larger): ";
+		cout << "Average number of collinear of points on each unique line," << endl
+			<< "will vary randomly by +- half of this value. (int 2 or larger): ";
 		cin >> pointsPerLine;
 		cout << endl;
 
 		// Generate points
 		randomizeSeed();
+        // Loss of precision is intentional here:
 		int colPoints = (double)totalPoints * collinearRatio;
 		int randomPoints = totalPoints - colPoints;
-
+        for(int i = 0; i < randomPoints; i++) {
+			double x = randReal(range * -1, range);
+			double y = randReal(range * -1, range);
+			pointList.push_back(Point(x, y));
+			cout << "Generated random point " << pointList.back() << endl;
+		}
+		for(int i = 0; i < colPoints;) {
+			double m = randReal(-50.0, 50.0);
+			double b = randReal(range * -1, range);
+			int pointsThisLine = randInt(pointsPerLine - (pointsPerLine / 2),
+				pointsPerLine + (pointsPerLine / 2));
+			int j = 0;
+			while(j < pointsThisLine && i < colPoints) {
+				double x = randReal(range * -1, range);
+				double y;
+				do {
+					y = (m * x) + b;
+				} while(abs(y) <= 1000);
+				cout << "Generated collinear point " << pointList.back() << endl;
+				j++;
+				i++;
+			}
+		}
 	}
 
 	if(fileMode) {
