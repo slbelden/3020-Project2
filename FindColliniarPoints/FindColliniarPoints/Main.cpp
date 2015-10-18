@@ -41,23 +41,26 @@ int main() {
 		fileMode = false;
 	}
 
-	vector<Point> pointListA;
+	vector<Point> pointList;
 
 	if(!fileMode) {
 		// Get info for random point generator
-		int numPoints;
+		int totalPoints;
 		double collinearRatio;
-		int numCollinear;
+		int pointsPerLine;
 		cout << "Total number of points to generate (positive integer): ";
-		cin >> numPoints;
+		cin >> totalPoints;
 		cout << "Ratio of points that will be collinear (double from 0.0 to 1.0): ";
 		cin >> collinearRatio;
 		cout << "Number collinear of points on each unique line (int 2 or larger): ";
-		cin >> numCollinear;
+		cin >> pointsPerLine;
 		cout << endl;
 
 		// Generate points
-		// TODO
+		randomizeSeed();
+		int colPoints = (double)totalPoints * collinearRatio;
+		int randomPoints = totalPoints - colPoints;
+
 	}
 
 	if(fileMode) {
@@ -65,25 +68,25 @@ int main() {
 		while(!infile.eof()) {
 			double x = 0, y = 0;
 			infile >> x >> y;
-			pointListA.push_back(Point(x, y));
+			pointList.push_back(Point(x, y));
 		}
 	}
 
 	// Create all edges
 	// O(N^2)
-	vector<Edge> edgeListA;
+	vector<Edge> edgeList;
 	vector <Point> tempPoints;
-	tempPoints = pointListA;
-	for each(Point a in pointListA) {
+	tempPoints = pointList;
+	for each(Point a in pointList) {
 		for each(Point b in tempPoints) {
-			if (a != b) edgeListA.push_back(Edge(a, b));
+			if (a != b) edgeList.push_back(Edge(a, b));
 		}
 		tempPoints.erase(tempPoints.begin());
 	}
 
 	// Sort by slope
 	// O(N log N)
-	sort(edgeListA.begin(), edgeListA.end());
+	sort(edgeList.begin(), edgeList.end());
 
 	// Testing Output
 	cout << endl << "Generic Output:" << endl
@@ -91,7 +94,7 @@ int main() {
 	cout << endl;
 	cout << "Some points from the list: " << endl;
 	int i = 1;
-	for each (Edge e in edgeListA) {
+	for each (Edge e in edgeList) {
 		cout << "Edge " << i << " is " << e << endl;
 		i++;
 	}
