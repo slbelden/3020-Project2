@@ -131,6 +131,7 @@ int main() {
 	// 
 	vector<Edge> matchedEdges;
 	vector<vector<Point>> answerList;
+	if (edgeList.size() < 2) exit(1);
 	while (!edgeList.empty()) {
 		if (edgeList[0] == edgeList[1]) {
 			matchedEdges.push_back(edgeList[0]);
@@ -145,6 +146,7 @@ int main() {
 		}
 		else {
 			matchedEdges.push_back(edgeList[0]);
+			edgeList.erase(edgeList.begin());
 			if (edgeList.size() == 1) {
 				edgeList.erase(edgeList.begin());
 			}
