@@ -98,6 +98,36 @@ int main() {
 		cout << "Edge " << i << " is " << e << endl;
 		i++;
 	}
+
+	// Find collinear points
+	// 
+	vector<Edge> edgeListB;
+	vector<vector<Edge>> answerList;
+	int i(1);
+	while (i==1) {
+		if (edgeListA[0] == edgeListA[1]) {
+			edgeListB.insert(edgeListA[0]);
+			edgeListA.erase(edgeListA[0]);
+			if (edgeListA.size() == 1) {
+				edgeListB.insert(edgeListA[0]);
+				edgeListA.erase(edgeListA[0]);
+			}
+		}
+		else {
+			edgeListB.insert(edgeListA[0]);
+			if (edgeListA.size() == 1) {
+				edgeListA.erase(edgeListA[0]);
+			}
+			if (edgeListB.size() >= 4) {
+				answerList.insert(edgeListB);
+			}
+			edgeListB.clear();
+		}
+		if (edgeListA.size() == 0) {
+			i = 0;
+		}
+	}
+
 }
 
 // Gobal Function Deffinions
