@@ -19,6 +19,7 @@ using std::cin;
 using std::endl;
 using std::sort;
 using std::string;
+using std::getline;
 using std::ifstream;
 
 // Global Function Declarations
@@ -27,24 +28,48 @@ vector<Point> generateRandomPoints(int number);
 // Global Variables
 double range = 1000; // Points will have a max x and y of +- this value
 double precission = 0.000001; // Acceptable error in double calculations
+bool fileMode = true; // Used to control program flow
+
 
 int main() {
 	// Open a file of points
 	ifstream infile;
-	do {
-		string filename;
-		cout << "Enter name of a point file: ";
-		cin >> filename;
-		infile.open(filename.c_str());
-		if(!infile) cout << "Failed to open point file." << endl << endl;
-	} while(!infile);
+	string filename;
+	cout << "Enter name of a point file: ";
+	getline(cin, filename);
+	infile.open(filename.c_str());
+	if(!infile) {
+		cout << "Failed to open point file." << endl;
+		cout << "Switching to random point generation instead..." << endl << endl;
+		fileMode = false;
+	}
 
-	// Read points from the file
 	vector<Point> pointListA;
-	while(!infile.eof()) {
-		double x = 0, y = 0;
-		infile >> x >> y;
-		pointListA.push_back(Point(x, y));
+
+	if(!fileMode) {
+		// Get info for random point generator
+		int numPoints;
+		double collinearRatio;
+		int numCollinear;
+		cout << "Total points to generate (non-negative integer): ";
+		cin >> numPoints;
+		cout << "Ratio of points that are collinear (double from 0.0 to 1.0): ";
+		cin >> collinearRatio;
+		cout << "Number collinear of points on each unique line (int 2 or larger): ";
+		cin >> numCollinear;
+		cout << endl;
+
+		// Generate points
+		// TODO
+	}
+
+	if(fileMode) {
+		// Read points from the file
+		while(!infile.eof()) {
+			double x = 0, y = 0;
+			infile >> x >> y;
+			pointListA.push_back(Point(x, y));
+		}
 	}
 
 	// Create all edges

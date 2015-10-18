@@ -23,7 +23,6 @@ Edge::Edge(Point one, Point two) {
 	_one = one;
 	_two = two;
 	setSlope();
-	_slope = getSlope();
 	_intercept = one.getY() - ( _slope * one.getX() ); // y = mx + b, so b = y - mx
 }
 
