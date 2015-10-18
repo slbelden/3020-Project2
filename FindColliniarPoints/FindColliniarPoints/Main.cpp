@@ -138,7 +138,9 @@ int main() {
 			if (edgeList.size() == 1) {
 				matchedEdges.push_back(edgeList[0]);
 				edgeList.erase(edgeList.begin());
-				answerList.push_back(edgesToPoints(matchedEdges));
+				if (matchedEdges.size() >= 4) {
+					answerList.push_back(edgesToPoints(matchedEdges));
+				}
 			}
 		}
 		else {
