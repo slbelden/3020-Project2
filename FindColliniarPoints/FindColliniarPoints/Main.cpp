@@ -163,6 +163,7 @@ int main() {
 		for each (Point p in v) {
 			cout << p << ", ";
 		}
+		cout << endl;
 	}
 
 }
