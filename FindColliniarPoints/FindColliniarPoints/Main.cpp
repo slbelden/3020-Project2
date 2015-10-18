@@ -131,8 +131,7 @@ int main() {
 	// 
 	vector<Edge> edgeListB;
 	vector<vector<Point>> answerList;
-	int temp(1);
-	while (temp==1) {
+	while (!edgeList.empty()) {
 		if (edgeList[0] == edgeList[1]) {
 			edgeListB.push_back(edgeList[0]);
 			edgeList.erase(edgeList.begin());
@@ -151,9 +150,6 @@ int main() {
 				answerList.push_back(edgesToPoints(edgeListB));
 			}
 			edgeListB.clear();
-		}
-		if (edgeList.empty()) {
-			temp = 0;
 		}
 	}
 
