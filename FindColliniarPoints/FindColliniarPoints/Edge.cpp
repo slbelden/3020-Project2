@@ -1,7 +1,8 @@
 // Edge.cpp
-// Edge class that holds 2 points and a slope
+// Manages 2 points and their associated slope-intercept values
 // Meghan Haukaas
-// 2015-Oct-11
+// Chris Ruiz
+// 2015-Oct-18
 
 #pragma once
 
@@ -77,6 +78,7 @@ ostream& operator<< (ostream& os, const Edge& e) {
 	return os;
 }
 
+// Chris Ruiz
 bool compareWithPrecision(double precision, double first, double second) {
 	return (abs(second - first) <= precision);
 }

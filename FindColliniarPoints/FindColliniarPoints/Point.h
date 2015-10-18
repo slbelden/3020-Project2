@@ -1,6 +1,6 @@
 // Point.h
-// A random point class. May be handy.
-// Chris Ruiz - CR
+// Manages a cartesian point defined by 2 doubles.
+// Chris Ruiz
 
 // 2015-Oct-4
 
