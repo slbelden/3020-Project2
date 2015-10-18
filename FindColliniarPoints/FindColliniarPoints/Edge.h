@@ -19,11 +19,13 @@ public:
 	Point get1() const;
 	Point get2() const;
 	double getSlope() const;
+	double getIntercept() const;
 
 private:
 	Point _one;
 	Point _two;
 	double _slope;
+	double _intercept; // "b" value
 };
 
 ostream& operator<< (ostream& os, const Edge& e);

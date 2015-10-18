@@ -16,6 +16,7 @@ Edge::Edge() {
 	_one = Point();
 	_two = Point();
 	_slope = 0.0;
+	_intercept = 0.0;
 }
 
 Edge::Edge(Point one, Point two) {
@@ -23,6 +24,7 @@ Edge::Edge(Point one, Point two) {
 	_two = two;
 	setSlope();
 	_slope = getSlope();
+	_intercept = one.getY() - ( _slope * one.getX() ); // y = mx + b, so b = y - mx
 }
 
 void Edge::set1(Point one) {
@@ -59,6 +61,10 @@ Point Edge::get2() const {
 
 double Edge::getSlope() const {
 	return _slope;
+}
+
+double Edge::getIntercept() const {
+	return _intercept;
 }
 
 bool operator< (const Edge & lhs, const Edge & rhs){
