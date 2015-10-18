@@ -1,7 +1,8 @@
 // Edge.h
-// Edge class with 2 points and a slope
+// Manages 2 points and their associated slope-intercept values
 // Meghan Haukaas
-// 2015-Oct-11
+// Chris Ruiz
+// 2015-Oct-18
 
 #pragma once
 

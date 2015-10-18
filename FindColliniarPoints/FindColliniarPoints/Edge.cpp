@@ -1,7 +1,8 @@
 // Edge.cpp
-// Edge class that holds 2 points and a slope
+// Manages 2 points and their associated slope-intercept values
 // Meghan Haukaas
-// 2015-Oct-11
+// Chris Ruiz
+// 2015-Oct-18
 
 #pragma once
 
@@ -23,7 +24,8 @@ Edge::Edge(Point one, Point two) {
 	_one = one;
 	_two = two;
 	setSlope();
-	_intercept = one.getY() - ( _slope * one.getX() ); // y = mx + b, so b = y - mx
+	// y = mx + b, so b = y - mx
+	_intercept = one.getY() - ( _slope * one.getX() );
 }
 
 void Edge::set1(Point one) {
@@ -71,15 +73,17 @@ bool operator< (const Edge & lhs, const Edge & rhs){
 }
 
 ostream& operator<< (ostream& os, const Edge& e) {
-	os << "(" << e.get1() << ", " << e.get2() << ")" << " Slope: " 
+	os << "(" << e.get1() << ", " << e.get2() << ")" << endl << "\tSlope: " 
 		<< e.getSlope() << " Intercept: " << e.getIntercept();
 	return os;
 }
 
+// Chris Ruiz
 bool compareWithPrecision(double precision, double first, double second) {
 	return (abs(second - first) <= precision);
 }
 
 bool Edge::operator== (const Edge& rhs) {
-	return (compareWithPrecision(_precision, _slope, rhs._slope) && compareWithPrecision(_precision, _intercept, rhs._intercept));
+	return (compareWithPrecision(_precision, _slope, rhs._slope)
+		&& compareWithPrecision(_precision, _intercept, rhs._intercept));
 }

@@ -1,8 +1,14 @@
+// Given n points in a plane, this algorithm will find all groups of 4 or more
+// collinear points in O(N^2 log N) time (probably).
+// The algorithm cna correctly handle parralel lines, treating them as 2
+// distinct collinear lines, and can handle n point on any line.
+// This program can also generate sets of random example points.
+
 // Stephen Belden - SB
 // Meghan Haugaas - MH
 // Chris Ruiz - CR
 
-// 2015-Oct-11
+// 2015-Oct-18
 
 #include <iostream>
 #include <fstream>
@@ -18,6 +24,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::sort;
+using std::random_shuffle;
 using std::abs;
 using std::string;
 using std::getline;
@@ -25,13 +32,11 @@ using std::ifstream;
 
 // Global Function Declarations
 vector<Point> generateRandomPoints(int number);
-
-// edges to points
 vector<Point> edgesToPoints(vector<Edge> edgeList);
 
 // Global Variables
 double range = 1000.0; // Points will have a max x and y of +- this value 
-bool fileMode = true; // Used to control program flow
+vector<Point> pointList; // Master list of points, used everywhere
 
 int main() {
 	// Open a file of points
@@ -43,16 +48,10 @@ int main() {
 	if(!infile) {
 		cout << "Failed to open point file." << endl;
 		cout << "Switching to random point generation instead..." << endl << endl;
-		fileMode = false;
-	}
 
-	vector<Point> pointList;
-
-	if(!fileMode) {
 		// Get info for random point generator
-		int totalPoints;
-		double collinearRatio;
-		int pointsPerLine;
+		int totalPoints = 0, pointsPerLine = 0;
+		double collinearRatio = 0;
 		cout << "Total number of points to generate (positive integer): ";
 		cin >> totalPoints;
 		cout << "Ratio of points that will be collinear (double from 0.0 to 1.0): ";
@@ -64,41 +63,43 @@ int main() {
 
 		// Generate points
 		randomizeSeed();
-        // Loss of precision is intentional here:
-		int colPoints = (double)totalPoints * collinearRatio;
+		int colPoints = (int)((double)totalPoints * collinearRatio);
 		int randomPoints = totalPoints - colPoints;
         for(int i = 0; i < randomPoints; i++) {
-			double x = randReal(range * -1, range);
-			double y = randReal(range * -1, range);
+			double x = randReal(-range, range);
+			double y = randReal(-range, range);
 			pointList.push_back(Point(x, y));
 			cout << "Generated random point " << pointList.back() << endl;
 		}
 		for(int i = 0; i < colPoints;) {
 			double m = randReal(-50.0, 50.0);
-			double b = randReal(range * -1, range);
+			double b = randReal(-range, range);
 			int pointsThisLine = randInt(pointsPerLine - (pointsPerLine / 2),
 				pointsPerLine + (pointsPerLine / 2));
 			int j = 0;
 			while(j < pointsThisLine && i < colPoints) {
-				double x = randReal(range * -1, range);
-				double y;
+				double x, y;
 				do {
+					x = randReal(-range, range);
 					y = (m * x) + b;
-				} while(abs(y) <= 1000);
+				} while((abs(y)) >= range);
+				pointList.push_back(Point(x, y));
 				cout << "Generated collinear point " << pointList.back() << endl;
 				j++;
 				i++;
 			}
 		}
+		random_shuffle(pointList.begin(), pointList.end());
 	}
 
-	if(fileMode) {
+	else {
 		// Read points from the file
 		while(!infile.eof()) {
 			double x = 0, y = 0;
 			infile >> x >> y;
 			pointList.push_back(Point(x, y));
 		}
+		cout << "Seccesfully read " << pointList.size() << " points." << endl;
 	}
 
 	// Create all edges
@@ -121,11 +122,9 @@ int main() {
 	cout << endl << "Generic Output:" << endl
 		<< "There may or may not be N groups of 4 or more collinear points in this list." << endl;
 	cout << endl;
-	cout << "Some points from the list: " << endl;
-	int i = 1;
-	for each (Edge e in edgeList) {
-		cout << "Edge " << i << " is " << e << endl;
-		i++;
+	cout << "Some edges from the list: " << endl;
+	for(int i = 0; i < 20; i++) {
+		cout << "Edge " << i << " is " << edgeList[i] << endl;
 	}
 
 	// Find collinear points
@@ -168,7 +167,7 @@ int main() {
 
 }
 
-// Gobal Function Deffinions
+// Global Function Deffinions
 vector<Point> generateRandomPoints(int number) {
 	vector<Point> list = vector<Point>();
 	randomizeSeed();
