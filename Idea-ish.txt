@@ -33,3 +33,26 @@ Line this(it,(it+1))
 }
 
 return allTheLines!!!
+
+<vector> Edge sortedList
+new <vector> Edge edgeList
+new <vector> vector answerList
+
+for (sortedList[0] to sortedList[n], iterator it)
+{
+	if (it == it+1)
+	{
+		edgeList.add(it)
+		keep going
+	}
+	else
+	{
+		edgeList.add(it)
+		if (edgeList.size >= 4)
+		{
+			answerList.insert(edgeList)
+		}
+		clear edgeList
+		keep going
+	}
+}
