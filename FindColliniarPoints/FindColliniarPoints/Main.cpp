@@ -24,6 +24,9 @@ using std::ifstream;
 // Global Function Declarations
 vector<Point> generateRandomPoints(int number);
 
+// edges to points
+vector<vector<Point>> edgesToPoints(vector<Edge> edgeList);
+
 // Global Variables
 double range = 1000.0; // Points will have a max x and y of +- this value 
 bool fileMode = true; // Used to control program flow
@@ -102,29 +105,30 @@ int main() {
 	// Find collinear points
 	// 
 	vector<Edge> edgeListB;
-	vector<vector<Edge>> answerList;
-	int i(1);
-	while (i==1) {
-		if (edgeListA[0] == edgeListA[1]) {
-			edgeListB.insert(edgeListA[0]);
-			edgeListA.erase(edgeListA[0]);
-			if (edgeListA.size() == 1) {
-				edgeListB.insert(edgeListA[0]);
-				edgeListA.erase(edgeListA[0]);
+	vector<vector<Point>> answerList;
+	int temp(1);
+	while (temp==1) {
+		if (edgeList[0] == edgeList[1]) {
+			edgeListB.push_back(edgeList[0]);
+			edgeList.erase(edgeList.begin());
+			if (edgeList.size() == 1) {
+				edgeListB.push_back(edgeList[0]);
+				edgeList.erase(edgeList.begin());
+				answerList = edgesToPoints(edgeListB);
 			}
 		}
 		else {
-			edgeListB.insert(edgeListA[0]);
-			if (edgeListA.size() == 1) {
-				edgeListA.erase(edgeListA[0]);
+			edgeListB.push_back(edgeList[0]);
+			if (edgeList.size() == 1) {
+				edgeList.erase(edgeList.begin());
 			}
 			if (edgeListB.size() >= 4) {
-				answerList.insert(edgeListB);
+				answerList = edgesToPoints(edgeListB);
 			}
 			edgeListB.clear();
 		}
-		if (edgeListA.size() == 0) {
-			i = 0;
+		if (edgeList.size() == 0) {
+			temp = 0;
 		}
 	}
 
@@ -138,4 +142,14 @@ vector<Point> generateRandomPoints(int number) {
 		list.push_back(Point(randReal(-1 * range, range), randReal(-1 * range, range)));
 	}
 	return list;
+}
+
+
+// incomplete!
+vector<vector<Point>> edgesToPoints(vector<Edge> edgeList) {
+	vector<vector<Point>> answers;
+	for each (Edge e in edgeList) {
+
+	}
+	return answers;
 }
