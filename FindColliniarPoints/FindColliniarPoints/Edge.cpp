@@ -72,6 +72,14 @@ bool operator< (const Edge & lhs, const Edge & rhs){
 
 ostream& operator<< (ostream& os, const Edge& e) {
 	os << "(" << e.get1() << ", " << e.get2() << ")" << " Slope: " 
-		<< e.getSlope();
+		<< e.getSlope() << " Intercept: " << e.getIntercept();
 	return os;
+}
+
+bool compareWithPrecision(double precision, double first, double second) {
+	return (abs(second - first) <= precision);
+}
+
+bool Edge::operator== (const Edge& rhs) {
+	return (compareWithPrecision(_precision, _slope, rhs._slope) && compareWithPrecision(_precision, _intercept, rhs._intercept));
 }
