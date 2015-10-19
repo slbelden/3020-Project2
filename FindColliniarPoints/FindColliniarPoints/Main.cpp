@@ -1,6 +1,6 @@
 // Given n points in a plane, this algorithm will find all groups of 4 or more
 // collinear points in O(N^2 log N) time (probably).
-// The algorithm cna correctly handle parralel lines, treating them as 2
+// The algorithm can correctly handle parallel lines, treating them as 2
 // distinct collinear lines, and can handle n point on any line.
 // This program can also generate sets of random example points.
 
