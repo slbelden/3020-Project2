@@ -1,5 +1,5 @@
 // Point.h
-// Manages a cartesian point defined by 2 doubles.
+// Manages a Cartesian point defined by 2 doubles.
 // Chris Ruiz
 
 // 2015-Oct-4

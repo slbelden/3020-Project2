@@ -99,7 +99,7 @@ int main() {
 			infile >> x >> y;
 			pointList.push_back(Point(x, y));
 		}
-		cout << "Seccesfully read " << pointList.size() << " points." << endl;
+		cout << "Succesfully read " << pointList.size() << " points." << endl;
 	}
 
 	// Create all edges
@@ -157,7 +157,7 @@ int main() {
 		}
 	}
 
-	// Print the lines with colinear points
+	// Print the lines with collinear points
 	for each (vector<Point> v in answerList) {
 		cout << "This line contains the points ";
 		for each (Point p in v) {
@@ -168,7 +168,7 @@ int main() {
 
 }
 
-// Global Function Deffinions
+// Global Function Definitons
 vector<Point> generateRandomPoints(int number) {
 	vector<Point> list = vector<Point>();
 	randomizeSeed();
