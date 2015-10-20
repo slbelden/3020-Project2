@@ -56,8 +56,7 @@ int main() {
 		cin >> totalPoints;
 		cout << "Ratio of points that will be collinear (decimal from 0.0 to 1.0): ";
 		cin >> collinearRatio;
-		cout << "Average number of collinear of points on each unique line," << endl
-			<< "will vary randomly by +- half of this value. (positive integer): ";
+		cout << "Number of collinear of points on each unique line (positive integer): ";
 		cin >> pointsPerLine;
 
 		// Generate points
@@ -75,10 +74,8 @@ int main() {
 		for(int i = 0; i < colPoints;) {
 			double m = randReal(-50.0, 50.0);
 			double b = randReal(-range, range);
-			int pointsThisLine = randInt(pointsPerLine - (pointsPerLine / 2),
-				pointsPerLine + (pointsPerLine / 2));
 			int j = 0;
-			while(j < pointsThisLine && i < colPoints) {
+			while(j < pointsPerLine && i < colPoints) {
 				double x, y;
 				// Ensure that the absolute value of y is less than range
 				do {
