@@ -31,7 +31,6 @@ using std::getline;
 using std::ifstream;
 
 // Global Function Declarations
-vector<Point> generateRandomPoints(int number);
 vector<Point> edgesToPoints(vector<Edge> edgeList);
 
 // Global Variables
