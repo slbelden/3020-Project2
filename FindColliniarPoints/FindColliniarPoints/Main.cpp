@@ -119,7 +119,7 @@ int main() {
 	sort(edgeList.begin(), edgeList.end());
 
 	// Find collinear points
-	// O(N), with a LOT of operations per N
+	//O(K), where K is N^2 elements
 	vector<Edge> matchedEdges;
 	vector<vector<Point>> answerList;
 	// Don't bother looking for groups of collinear points if there aren't
