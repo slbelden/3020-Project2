@@ -84,6 +84,7 @@ bool compareWithPrecision(double precision, double first, double second) {
 }
 
 bool Edge::operator== (const Edge& rhs) {
-	return (compareWithPrecision(_precision, _slope, rhs._slope)
+	if(_slope == _inf && rhs._slope == _inf) return true;
+	else return (compareWithPrecision(_precision, _slope, rhs._slope)
 		&& compareWithPrecision(_precision, _intercept, rhs._intercept));
 }

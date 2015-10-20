@@ -8,6 +8,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <limits>
 #include "Point.h"
 using std::ostream;
 
@@ -30,6 +31,7 @@ private:
 	double _slope;
 	double _intercept; // "b" value
 	double _precision = 0.00000000001; // Acceptable error in double calculations
+	double _inf = std::numeric_limits<double>::infinity();
 };
 
 ostream& operator<< (ostream& os, const Edge& e);
