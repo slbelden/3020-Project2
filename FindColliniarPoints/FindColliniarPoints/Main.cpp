@@ -1,14 +1,14 @@
 // Given n points in a plane, this algorithm will find all groups of 4 or more
-// collinear points in O(N^2 log N) time (probably).
+// collinear points in O(N^2 log N) time.
 // The algorithm can correctly handle parallel lines, treating them as 2
-// distinct collinear lines, and can handle n point on any line.
+// distinct collinear lines, and can handle n points on any line.
 // This program can also generate sets of random example points.
 
 // Stephen Belden - SB
 // Meghan Haugaas - MH
 // Chris Ruiz - CR
 
-// 2015-Oct-18
+// 2015-Oct-19
 
 #include <iostream>
 #include <fstream>
@@ -35,7 +35,7 @@ vector<Point> generateRandomPoints(int number);
 vector<Point> edgesToPoints(vector<Edge> edgeList);
 
 // Global Variables
-double range = 1000.0; // Points will have a max x and y of +- this value 
+double range = 1000.0; // The max |x| and |y| of generated points 
 vector<Point> pointList; // Master list of points, used everywhere
 
 int main() {
@@ -47,30 +47,32 @@ int main() {
 	infile.open(filename.c_str());
 	if(!infile) {
 		cout << "Failed to open point file." << endl;
-		cout << "Switching to random point generation instead..." << endl << endl;
+		cout << "Switching to random point generation instead..."
+			<< endl << endl;
 
 		// Get info for random point generator
 		int totalPoints = 0, pointsPerLine = 0;
 		double collinearRatio = 0;
 		cout << "Total number of points to generate (positive integer): ";
 		cin >> totalPoints;
-		cout << "Ratio of points that will be collinear (double from 0.0 to 1.0): ";
+		cout << "Ratio of points that will be collinear (decimal from 0.0 to 1.0): ";
 		cin >> collinearRatio;
 		cout << "Average number of collinear of points on each unique line," << endl
-			<< "will vary randomly by +- half of this value. (int 2 or larger): ";
+			<< "will vary randomly by +- half of this value. (positive integer): ";
 		cin >> pointsPerLine;
-		cout << endl;
 
 		// Generate points
 		randomizeSeed();
+		// Determine how many of each kind of point to generate
 		int colPoints = (int)((double)totalPoints * collinearRatio);
 		int randomPoints = totalPoints - colPoints;
+		// Generate totally random points
         for(int i = 0; i < randomPoints; i++) {
 			double x = randReal(-range, range);
 			double y = randReal(-range, range);
 			pointList.push_back(Point(x, y));
-			cout << "Generated random point " << pointList.back() << endl;
 		}
+		// Generate points guaranteed to be collinear
 		for(int i = 0; i < colPoints;) {
 			double m = randReal(-50.0, 50.0);
 			double b = randReal(-range, range);
@@ -79,17 +81,19 @@ int main() {
 			int j = 0;
 			while(j < pointsThisLine && i < colPoints) {
 				double x, y;
+				// Ensure that the absolute value of y is less than range
 				do {
 					x = randReal(-range, range);
 					y = (m * x) + b;
 				} while((abs(y)) >= range);
 				pointList.push_back(Point(x, y));
-				cout << "Generated collinear point " << pointList.back() << endl;
 				j++;
 				i++;
 			}
 		}
+		// Shuffle the random and collinear points together
 		random_shuffle(pointList.begin(), pointList.end());
+		cout << "Generated " << pointList.size() << " total points." << endl;
 	}
 
 	else {
@@ -115,23 +119,22 @@ int main() {
 	}
 
 	// Sort by slope
-	// O(N log N)
+	// O(K log K), where K is N^2 elements
 	sort(edgeList.begin(), edgeList.end());
 
-	// Testing Output
-	cout << endl << "Generic Output:" << endl
-		<< "There may or may not be N groups of 4 or more collinear points in this list." << endl;
-	cout << endl;
-	cout << "Some edges from the list: " << endl;
-	for(int i = 0; i < 20; i++) {
-		cout << "Edge " << i << " is " << edgeList[i] << endl;
-	}
-
 	// Find collinear points
-	// 
+	// O(N), with a LOT of operations per N
 	vector<Edge> matchedEdges;
 	vector<vector<Point>> answerList;
-	if (edgeList.size() < 2) exit(1);
+	// Don't bother looking for groups of collinear points if there aren't
+	// at least 3 edges. This check also makes sure there are enough
+	// items in the list to avoid accessing an element that doesn't exist.
+	if(edgeList.size() < 3) {
+		cout << endl
+			<< "Not enough input points to find collinear points."
+			<< endl << endl;
+		exit(1);
+	}
 	while (!edgeList.empty()) {
 		if (edgeList[0] == edgeList[1]) {
 			matchedEdges.push_back(edgeList[0]);
@@ -158,25 +161,34 @@ int main() {
 	}
 
 	// Print the lines with collinear points
-	for each (vector<Point> v in answerList) {
-		cout << "This line contains the points ";
-		for each (Point p in v) {
-			cout << p << ", ";
+	cout << endl;
+	if(answerList.size() <= 0) {
+		cout << "No groups of 4 or more collinear points." << endl << endl;
+	}
+	else {
+		int n = 1;
+		for each (vector<Point> v in answerList) {
+			cout << "Line " << n << " has "
+				<< v.size() << " collinear points: ";
+			int p = 0;
+			// Print first two points directly beside text
+			// This is safe because any v will have at least 4 points
+			cout << v[p] << ", ";
+			p++;
+			cout << v[p] << ", ";
+			p++;
+			// Print the rest of the points, 3 per line, indented
+			while(p < v.size()) {
+				if((p + 1) % 3 == 0) cout << endl << "\t";
+				cout << v[p] << ", ";
+				p++;
+			}
+			cout << endl << endl;
+			n++;
 		}
-		cout << endl;
 	}
-
 }
 
-// Global Function Definitons
-vector<Point> generateRandomPoints(int number) {
-	vector<Point> list = vector<Point>();
-	randomizeSeed();
-	for (int i = 0; i < number; i++) {
-		list.push_back(Point(randReal(-1 * range, range), randReal(-1 * range, range)));
-	}
-	return list;
-}
 
 // Take a vector of Edges and make it into a vector
 // of non-repeating Points

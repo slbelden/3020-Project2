@@ -2,7 +2,7 @@
 // Manages 2 points and their associated slope-intercept values
 // Meghan Haukaas
 // Chris Ruiz
-// 2015-Oct-18
+// 2015-Oct-19
 
 #pragma once
 
@@ -29,7 +29,7 @@ private:
 	Point _two;
 	double _slope;
 	double _intercept; // "b" value
-	double _precision = 0.000001; // Acceptable error in double calculations
+	double _precision = 0.00000000001; // Acceptable error in double calculations
 };
 
 ostream& operator<< (ostream& os, const Edge& e);
