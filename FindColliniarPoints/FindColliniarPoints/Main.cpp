@@ -19,6 +19,7 @@
 #include "Point.h"
 #include "RandomUtilities.h"
 #include "Edge.h"
+#include "winTimer.h"
 using std::vector;
 using std::cout;
 using std::cin;
@@ -102,6 +103,9 @@ int main() {
 		cout << "Succesfully read " << pointList.size() << " points." << endl;
 	}
 
+	Timer time = Timer();
+	time.start();
+
 	// Create all edges
 	// O(N^2)
 	vector<Edge> edgeList;
@@ -156,6 +160,8 @@ int main() {
 		}
 	}
 
+	time.stop();
+
 	// Print the lines with collinear points
 	cout << endl;
 	if(answerList.size() <= 0) {
@@ -183,6 +189,8 @@ int main() {
 			n++;
 		}
 	}
+
+	cout << "Time: " << time() << " seconds." << endl << endl;
 }
 
 
